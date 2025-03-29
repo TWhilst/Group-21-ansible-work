@@ -2,6 +2,8 @@
 - name: Create Jenkins user on agent
   hosts: a1
   become: yes
+  vars:
+    root_pass: Jenkins
 
   tasks:
     - name: install java
@@ -15,6 +17,7 @@
         create_home: yes
         shell: /bin/bash
         update_password: on_create
-        password: Jenkins
+        # when inputing a password on ansible playbook, it has to be written in this format
+        password: "{{root_pass | password_hash('sha512')}}"
 
 ...
