@@ -1,0 +1,16 @@
+---
+- name: Copy ssh key from master to agent
+  host: n1
+  become: yes
+
+  tasks:
+    - name: Copy to ssh pub file
+      ansible.builtin.copy:
+        #content is the text being copied to the file
+        content: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFxQha6bz70F7OgXnuA92pVeGPlJwFKOoeLTIGpVTU2 ubuntu@ip-172-31-29-70'
+        dest: /etc/mine.conf
+        # follow if yes simply empties the file
+        follow: yes
+
+
+...
