@@ -6,7 +6,7 @@
   tasks:
     - name: install java
       yum:
-        name: java*
+        name: java-17
         state: present
 
     - name: Create user jenkins
