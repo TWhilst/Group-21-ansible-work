@@ -6,7 +6,7 @@
   tasks:
     - name: install java
       yum:
-        name: openjdk-17-jre-headless
+        name: java*
         state: present
 
     - name: Create user jenkins
