@@ -1,6 +1,6 @@
 ---
 - name: Copy ssh key from master to agent
-  host: n1
+  hosts: n1
   become: yes
 
   tasks:
