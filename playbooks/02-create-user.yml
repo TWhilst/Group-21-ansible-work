@@ -30,7 +30,7 @@
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
         src: /var/lib/jenkins/.ssh/
-        dest: /var/lib/jenkins/.ssh
+        dest: /var/lib/jenkins/.ssh/
         owner: jenkins
 #        remote_src: true
         mode: 0700
