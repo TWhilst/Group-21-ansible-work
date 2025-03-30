@@ -32,13 +32,13 @@
 
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
-        src: /var/lib/jenkins/.ssh/id_ed25519.pub
+        src: /tmp/id_ed25519.pub
         dest: /home/jenkins1/.ssh/authorized_keys
         owner: jenkins
         group: jenkins
         remote_src: true
         mode: 0600
-      become_user: jenkins
+#      become_user: jenkins
 #    - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
 #      community.crypto.openssh_keypair:
 #        path: /var/lib/jenkins/.ssh/id_ssh_rsa
