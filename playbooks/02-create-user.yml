@@ -36,7 +36,7 @@
         dest: /home/jenkins1/.ssh/authorized_keys
         owner: jenkins
         group: jenkins
-#        remote_src: true
+        remote_src: true
         mode: 0600
 #    - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
 #      community.crypto.openssh_keypair:
