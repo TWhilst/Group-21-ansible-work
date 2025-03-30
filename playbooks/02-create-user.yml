@@ -29,7 +29,9 @@
 
     - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
       community.crypto.openssh_keypair:
-        path: /var/lib/jenkins/.ssh/id_ed25519
+        path: /var/lib/jenkins/.ssh/id_ssh_rsa
+#       force used only when the key already exists
+        force: true
         owner: jenkins
         mode: 0700
 
