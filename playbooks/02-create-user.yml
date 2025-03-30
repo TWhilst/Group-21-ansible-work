@@ -18,6 +18,6 @@
         shell: /bin/bash
         update_password: on_create
         # when inputing a password on ansible playbook, it has to be written in this format
-        password: "{{root_pass | password_hash('sha512')}}"
+#        password: "{{root_pass | password_hash('sha512')}}"
 
 ...
