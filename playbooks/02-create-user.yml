@@ -20,12 +20,12 @@
         # when inputing a password on ansible playbook, it has to be written in this format
 #        password: "{{root_pass | password_hash('sha512')}}"
 
-#    - name: Create .ssh folder
-#      file:
-#        path: /.ssh
-#        state: directory
-#        owner: jenkins
-#        mode: 0700
+    - name: Create .ssh folder
+      file:
+        path: /var/lib/jenkins/.ssh
+        state: directory
+        owner: jenkins
+        mode: 0700
 
     - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
       community.crypto.openssh_keypair:
