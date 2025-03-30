@@ -32,6 +32,7 @@
         src: /var/lib/jenkins/.ssh
         dest: /var/lib/jenkins/.ssh
         owner: jenkins
+        remote_src: true
         mode: 0700
 #    - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
 #      community.crypto.openssh_keypair:
