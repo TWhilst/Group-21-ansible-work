@@ -3,7 +3,7 @@
   hosts: b1
   become: yes
 #  sudo for admin priviledges
-  become_user: jenkins
+  become_user: root
 #  vars:
 #    root_pass: Jenkins
 
