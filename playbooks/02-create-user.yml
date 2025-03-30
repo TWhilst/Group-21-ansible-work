@@ -1,6 +1,6 @@
 ---
 - name: Create Jenkins user on agent
-  hosts: a1
+  hosts: b1
   become: yes
   vars:
     root_pass: Jenkins
