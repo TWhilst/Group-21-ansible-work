@@ -2,6 +2,8 @@
 - name: Create Jenkins user on agent
   hosts: b1
   become: yes
+#  sudo for admin priviledges
+  sudo: yes
 #  vars:
 #    root_pass: Jenkins
 
@@ -36,7 +38,6 @@
         group: jenkins
 #        remote_src: true
         mode: 0600
-      become_user: root
 #    - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
 #      community.crypto.openssh_keypair:
 #        path: /var/lib/jenkins/.ssh/id_ssh_rsa
