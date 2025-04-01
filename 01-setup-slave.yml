@@ -1,9 +1,14 @@
 ---
-- name: Create remote root for slave1
+- name: Setup slave
   hosts: slave1
   become: yes
 
   tasks:
+    - name: Create remote folder
+      yum:
+        name: java-17
+        state: present
+
     - name: Create remote folder
       file:
         path: /home/ec2-user/jenkins/
