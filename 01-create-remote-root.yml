@@ -6,7 +6,7 @@
   tasks:
     - name: Create remote folder
       file:
-        path: /home/jenkins/
+        path: ~/jenkins/
         state: directory
 
 
