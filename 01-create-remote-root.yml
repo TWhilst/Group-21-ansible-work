@@ -1,0 +1,14 @@
+---
+- name: Create remote root for slave1
+  hosts: slave1
+  become: yes
+
+  tasks:
+    - name: Create remote folder
+      file:
+        path: /home/jenkins/
+        state: directory
+
+
+
+...
