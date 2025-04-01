@@ -6,7 +6,7 @@
   tasks:
     - name: Create remote folder
       file:
-        path: ~/jenkins/
+        path: /home/ec2-user/jenkins/
         state: directory
 
 
