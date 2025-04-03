@@ -5,14 +5,9 @@
   become: true
 
   tasks:
-    - name: install epel-release
-      yum:
-        name: epel-release
-        state: present
-
     - name: install node.js
       yum:
-        name: nodejs
+        name: nodejs:18
         state: present
 
     - name: install npm
