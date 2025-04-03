@@ -1,0 +1,23 @@
+---
+- name: Node.js
+  hosts: app2
+#  hosts: app1
+  become: true
+
+  tasks:
+    - name: install epel-release
+      yum:
+        name: epel-release
+        state: present
+
+    - name: install node.js
+      yum:
+        name: nodejs
+        state: present
+
+    - name: install npm
+      service:
+        name: npm
+        state: present
+
+
