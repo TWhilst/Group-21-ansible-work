@@ -1,0 +1,29 @@
+---
+- name: install nexus
+  hosts: app2
+  become: true
+
+  tasks:
+    - name: confirm if java is installed
+      yum:
+        name: java
+        state: present
+
+    - name: Download nexus sources
+      get-url:
+        url: https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.79.0-09.tar.gz
+#        dest: /home/centos/
+        dest: /home/ec2-user/
+
+    - name: extract nexus components
+      unarchive:
+#        src: /home/centos/
+        src: /home/ec2-user/
+#        dest: /home/centos/
+        dest: /home/ec2-user/
+
+#    - name: start and enable service
+#      ansible.builtin.systemd_service:
+#        state: started
+#        name: nexus.service
+#        enabled: true
