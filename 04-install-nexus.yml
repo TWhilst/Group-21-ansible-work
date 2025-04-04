@@ -17,8 +17,8 @@
 
     - name: extract nexus components
       unarchive:
-#        src: /home/centos/
-        src: /home/ec2-user/
+#        src: /home/centos/nexus-unix-x86-64-3.79.0-09.tar.gz
+        src: /home/ec2-user/nexus-unix-x86-64-3.79.0-09.tar.gz
 #        dest: /home/centos/
         dest: /home/ec2-user/
 
