@@ -23,8 +23,8 @@
 #        dest: /home/centos/
         dest: /home/ec2-user/
 
-#    - name: start and enable service
-#      ansible.builtin.systemd_service:
-#        state: started
-#        name: nexus.service
-#        enabled: true
+    - name: start and enable service
+      ansible.builtin.systemd_service:
+        state: started
+        name: nexus-3.79.0-09/bin/nexus
+        enabled: true
