@@ -10,7 +10,7 @@
         state: present
 
     - name: Download nexus sources
-      get-url:
+      get_url:
         url: https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.79.0-09.tar.gz
 #        dest: /home/centos/
         dest: /home/ec2-user/
