@@ -14,11 +14,11 @@
         name: pm
       become: true
 
-#    - name: Install nodejs app from custom registry.
-#      community.general.npm:
-#        name: nodejs-app
-#        registry: "{{npm_url}}"
-#        path: /home/centos/
+    - name: Install nodejs app from custom registry.
+      community.general.npm:
+        name: nodejs-app
+        registry: "{{npm_url}}"
+        path: /home/centos/
 #
 #    - name: Execute pm2 start command
 #      command: pm2 start
