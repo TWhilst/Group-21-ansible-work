@@ -2,6 +2,8 @@
 - name: deploy node.js
   hosts: app2
   become: true
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
   vars:
     - npm_url: http://{{ansible_host}}:8081/nexus/content/repositories/nodejs-app/
 
