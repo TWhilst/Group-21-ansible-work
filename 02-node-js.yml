@@ -24,7 +24,7 @@
         state: absent
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
-      become: true
+      become_user: root
 
 #    - name: install node.js
 #      yum:
