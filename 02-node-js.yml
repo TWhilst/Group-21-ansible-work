@@ -25,6 +25,14 @@
     - debug:
         var: nvm_output.stdout
 
+    - name: Install the latest Node.js version with nvm
+      shell: ". ~/.nvm/nvm.sh && nvm install node"
+      register: nvm_install_output
+      changed_when: "'Now using node' not in nvm_install_output.stdout"
+    - debug:
+        var: nvm_install_output.stdout
+
+
 
 #    - name: Check if /usr/local/bin/node exists
 #      stat:
