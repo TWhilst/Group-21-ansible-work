@@ -24,9 +24,16 @@
 
     - name: Download node.js packages
       ansible.builtin.get_url:
-        url: https://rpm.nodesource.com/setup_10.x
+        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
         dest: /home/centos
       become: true
+
+    - name: Extract foo.tgz into /var/lib/foo
+      ansible.builtin.unarchive:
+        src: /home/centos/node-v*
+        dest: /usr/local
+        remote_src: yes
+        extra_opts: --strip-components 1
 
 #    - name: Comment out mirrorlist lines in CentOS-Base.repo
 #      ansible.builtin.lineinfile:
