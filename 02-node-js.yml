@@ -16,6 +16,15 @@
       args:
         creates: ~/.nvm/nvm.sh
 
+    - name: Execute nvm setup commands
+      shell: |
+        export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+      register: nvm_output
+      changed_when: nvm_output.rc != 0
+    - debug:
+        var: nvm_output.stdout
+
 
 #    - name: Check if /usr/local/bin/node exists
 #      stat:
