@@ -5,9 +5,18 @@
   become: true
 
   tasks:
+    - name: update all installed packages
+      yum:
+        update_only: true
+        update_cache: true
+
+    - name: Download node.js packages
+      ansible.builtin.get_url:
+        url: https://rpm.nodesource.com/setup_23.x
+
     - name: install node.js
       yum:
-        name: nodejs20
+        name: nodejs
         state: present
 
     - name: install npm
