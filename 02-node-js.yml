@@ -26,6 +26,13 @@
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
 
+    - name: Uncomment baseurl lines in CentOS-Base.repo
+      ansible.builtin.lineinfile:
+        path: /etc/yum.repos.d/CentOS-Base.repo
+        regexp: '^#baseurl='
+        state: present
+        line: 'baseurl='
+
 #    - name: install node.js
 #      yum:
 #        name: nodejs
