@@ -28,27 +28,26 @@
         dest: /home/centos
       become: true
 
-    - name: Comment out mirrorlist lines in CentOS-Base.repo
-      ansible.builtin.lineinfile:
-        path: /etc/yum.repos.d/CentOS-Base.repo
-        regexp: '^mirrorlist='
-        state: absent
-#        owner: root
-        line: '#mirrorlist='
-        insertbefore: '^#baseurl='
+#    - name: Comment out mirrorlist lines in CentOS-Base.repo
+#      ansible.builtin.lineinfile:
+#        path: /etc/yum.repos.d/CentOS-Base.repo
+#        regexp: '^mirrorlist='
+#        state: absent
+##        owner: root
+#        line: '#mirrorlist='
+#        insertbefore: '^#baseurl='
+#
+#    - name: Set baseurl for each repository to CentOS Vault
+#      ansible.builtin.lineinfile:
+#        path: /etc/yum.repos.d/CentOS-Base.repo
+#        regexp: '^#?baseurl=http://mirror.centos.org/centos/$releasever/{{ item.path }}/$basearch/'
+#        line: 'baseurl={{ vault_url_prefix}}/centos/$releasever/{{ item.path }}/$basearch/'
+#      loop: "{{ repositories }}"
 
-    - name: Set baseurl for each repository to CentOS Vault
-      ansible.builtin.lineinfile:
-        path: /etc/yum.repos.d/CentOS-Base.repo
-        regexp: '^#?baseurl=http://mirror.centos.org/centos/$releasever/{{ item.path }}/$basearch/'
-        line: 'baseurl={{ vault_url_prefix}}/centos/$releasever/{{ item.path }}/$basearch/'
-      loop: "{{ repositories }}"
-
-#    - name: install node.js
-#      yum:
-#        name: nodejs
-#        state: present
-#      become: true
+    - name: install node.js
+      yum:
+        name: nodejs
+        state: present
 #
 #    - name: install npm
 #      yum:
