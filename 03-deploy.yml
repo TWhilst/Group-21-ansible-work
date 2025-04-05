@@ -14,11 +14,11 @@
         name: pm
       become: true
 
-    - name: Install nodejs app from custom registry.
-      community.general.npm:
-        name: nodejs-app
-        registry: "{{ npm_url }}"
-        path: /home/centos/
+    - name: Install Express using npm
+      command: >
+        npm install express --registry http://34.203.223.180:8081/repository/your-npm-hosted-repository-name/
+      args:
+        chdir: /home/centos
 #
 #    - name: Execute pm2 start command
 #      command: pm2 start
