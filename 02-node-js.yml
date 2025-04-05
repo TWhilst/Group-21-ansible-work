@@ -27,13 +27,12 @@
       file:
         path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
         state: absent
-#        recurse: yes
 
-    - name: create dir
-      file:
-        path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
-        state: directory
-#        recurse: yes
+#    - name: create dir
+#      file:
+#        path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
+#        state: directory
+##        recurse: yes
 
     - name: Download node.js packages
       ansible.builtin.get_url:
