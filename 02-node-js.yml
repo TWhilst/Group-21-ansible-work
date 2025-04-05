@@ -2,30 +2,29 @@
 - name: Node.js
   hosts: app2
 #  hosts: app1
-  become_user: centos
+  become: true
 
   tasks:
     - name: update all installed packages
       yum:
         update_only: true
         update_cache: true
-      become: true
+#      become: true
 
     - name: Download node.js packages
       ansible.builtin.get_url:
         url: https://rpm.nodesource.com/setup_10.x
         dest: /home/centos
-      become: true
+#      become: true
 
     - name: Comment out mirrorlist lines in CentOS-Base.repo
-      become: true
       ansible.builtin.lineinfile:
         path: /etc/yum.repos.d/CentOS-Base.repo
         regexp: '^mirrorlist='
         state: absent
         line: '#mirrorlist={{ lookup(''file'', "/etc/yum.repos.d/CentOS-Base.repo") | regex_search(''^mirrorlist=.*$'') | first | default('''' ) }}'
         insertbefore: '^#baseurl='
-
+#      become: true
 
 #    - name: install node.js
 #      yum:
