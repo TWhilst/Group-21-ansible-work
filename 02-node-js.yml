@@ -11,14 +11,10 @@
         update_cache: true
       become: true
 
-    - name: Install nvm (Node Version Manager)
-      hosts: your_target_server
-      become: true  # Typically not needed for installing in user's home directory
-      tasks:
-        - name: Download and execute nvm installation script
-          shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash"
-          args:
-            creates: ~/.nvm/nvm.sh
+    - name: Download and execute nvm installation script
+      shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash"
+      args:
+        creates: ~/.nvm/nvm.sh
 
 
 #    - name: Check if /usr/local/bin/node exists
