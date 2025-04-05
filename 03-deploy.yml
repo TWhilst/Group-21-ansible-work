@@ -5,7 +5,7 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
   vars:
-    - npm_url: http://{{ansible_host}}:8081/nexus/content/repositories/nodejs-app/
+    - npm_url: http://34.203.223.180:8081/nexus/content/repositories/nodejs-app/devops-api/
 
   tasks:
     - name: install pm
@@ -17,7 +17,7 @@
     - name: Install nodejs app from custom registry.
       community.general.npm:
         name: nodejs-app
-        registry: "{{npm_url}}"
+        registry: "{{ npm_url }}"
         path: /home/centos/
 #
 #    - name: Execute pm2 start command
