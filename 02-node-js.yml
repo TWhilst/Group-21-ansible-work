@@ -22,7 +22,7 @@
         path: /etc/yum.repos.d/CentOS-Base.repo
         regexp: '^mirrorlist='
         state: absent
-        line: '#mirrorlist={{ lookup(''file'', "/etc/yum.repos.d/CentOS-Base.repo") | regex_search(''^mirrorlist=.*$'') | first | default('''' ) }}'
+        line: '#mirrorlist='
         insertbefore: '^#baseurl='
 #      become: true
 
