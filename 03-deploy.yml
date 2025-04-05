@@ -2,7 +2,7 @@
 - name: deploy node.js
   hosts: app2
   become_user: true
-  var:
+  vars:
     - npm_url: http://{{ansible_host}}:8081/nexus/content/repositories/nodejs-app/
 
   tasks:
