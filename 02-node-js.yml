@@ -46,7 +46,7 @@
           - make
           - python
           - openssl-devel
-          - libuv-devel
+          - libuv
         state: present
 
     - name: Navigate to Node.js source directory
