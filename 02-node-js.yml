@@ -18,13 +18,14 @@
       become: true
 
     - name: Comment out mirrorlist lines in CentOS-Base.repo
+      become: true
       ansible.builtin.lineinfile:
         path: /etc/yum.repos.d/CentOS-Base.repo
         regexp: '^mirrorlist='
         state: absent
         line: '#mirrorlist={{ lookup(''file'', "/etc/yum.repos.d/CentOS-Base.repo") | regex_search(''^mirrorlist=.*$'') | first | default('''' ) }}'
         insertbefore: '^#baseurl='
-      become: true
+
 
 #    - name: install node.js
 #      yum:
