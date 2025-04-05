@@ -11,6 +11,18 @@
         update_cache: true
       become: true
 
+    - name: Check if /usr/local/bin/node exists
+      stat:
+        path: /usr/local/bin/node
+      register: node_bin
+
+    - name: Remove existing Node.js installation in /usr/local if found
+      file:
+        path: /usr/local
+        state: absent
+        recurse: yes
+      when: node_bin.stat.exists
+
     - name: Download node.js packages
       ansible.builtin.get_url:
 #        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
