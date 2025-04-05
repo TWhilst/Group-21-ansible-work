@@ -2,7 +2,7 @@
 - name: Node.js
   hosts: app2
 #  hosts: app1
-  become_user: centos
+  become: true
 
   tasks:
     - name: update all installed packages
@@ -22,10 +22,9 @@
         path: /etc/yum.repos.d/CentOS-Base.repo
         regexp: '^mirrorlist='
         state: absent
-        owner: root
+#        owner: root
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
-      become_user: root
 
 #    - name: install node.js
 #      yum:
