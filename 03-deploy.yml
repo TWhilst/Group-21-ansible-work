@@ -1,7 +1,7 @@
 ---
 - name: deploy node.js
   hosts: app2
-  become_user: centos
+  become_user: true
   var:
     - npm_url: http://{{ansible_host}}:8081/nexus/content/repositories/nodejs-app/
 
@@ -12,27 +12,27 @@
         name: pm
       become: true
 
-    - name: Install nodejs app from custom registry.
-      community.general.npm:
-        name: nodejs-app
-        registry: "{{npm_url}}"
-        path: /home/centos/
-
-    - name: Execute pm2 start command
-      command: pm2 start
-      args:
-        chdir: /home/centos/
-      register: command_output
-
-#    - name: Install dependencies
-#      command: npm install
+#    - name: Install nodejs app from custom registry.
+#      community.general.npm:
+#        name: nodejs-app
+#        registry: "{{npm_url}}"
+#        path: /home/centos/
+#
+#    - name: Execute pm2 start command
+#      command: pm2 start
 #      args:
-#        chdir: /path/to/app
-
-    - name: Restart application (using pm2)
-      command: pm2 restart 0
-      args:
-        chdir: /home/centos
+#        chdir: /home/centos/
+#      register: command_output
+#
+##    - name: Install dependencies
+##      command: npm install
+##      args:
+##        chdir: /path/to/app
+#
+#    - name: Restart application (using pm2)
+#      command: pm2 restart 0
+#      args:
+#        chdir: /home/centos
 
 #    - name: Configure reverse proxy (Nginx example)
 #      template:

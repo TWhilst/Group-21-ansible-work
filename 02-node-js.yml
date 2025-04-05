@@ -24,10 +24,4 @@
         remote_src: yes
         extra_opts: --strip-components=1
 
-    - name: install npm
-      yum:
-        name: npm
-        state: present
-      become: true
-
 
