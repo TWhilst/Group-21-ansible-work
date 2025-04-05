@@ -23,61 +23,18 @@
         recurse: yes
       when: node_bin.stat.exists
 
-    - name: Download node.js packages
-      ansible.builtin.get_url:
-#        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
-        url: https://nodejs.org/dist/v18.20.8/node-v18.20.8.tar.gz
-        dest: /home/centos
-      become: true
-
-    - name: Extract foo.tgz into /var/lib/foo
-      ansible.builtin.unarchive:
-        src: /home/centos/node-v18.20.8.tar.gz
-        dest: /usr/local
-        remote_src: yes
-        extra_opts: --strip-components=1
-
-    - name: Install build dependencies
-      yum:
-        name:
-          - epel-release
-          - gcc
-          - gcc-c++
-          - make
-          - python
-          - openssl-devel
-          - libuv
-        state: present
-
-    - name: Navigate to Node.js source directory
-      command: "chdir=/usr/local/ /bin/true" # Just to change the working directory for subsequent commands
-
-    - name: Run configure script
-      command: "./configure"
-      args:
-        chdir: /usr/local/
-
-    - name: Build Node.js
-      command: "make -j{{ ansible_processor_vcpus }}"
-      args:
-        chdir: /usr/local/
-
-    - name: Install Node.js
-      become: true
-      command: "make install"
-      args:
-        chdir: /usr/local/
-
-    - name: Verify Node.js version
-      command: node -v
-      register: node_version
-    - debug:
-        var: node_version.stdout
-
-    - name: Verify npm version
-      command: npm -v
-      register: npm_version
-    - debug:
-        var: npm_version.stdout
+#    - name: Download node.js packages
+#      ansible.builtin.get_url:
+##        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
+#        url: https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.xz
+#        dest: /home/centos
+#      become: true
+#
+#    - name: Extract foo.tgz into /var/lib/foo
+#      ansible.builtin.unarchive:
+#        src: /home/centos/node-v18.20.8.tar.gz
+#        dest: /usr/local
+#        remote_src: yes
+#        extra_opts: --strip-components=1
 
 
