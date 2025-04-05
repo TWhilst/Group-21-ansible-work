@@ -23,13 +23,13 @@
         recurse: yes
       when: node_bin.stat.exists
 
-#    - name: Remove files and directories from previous tar extraction
-#      file:
-#        path: /usr/local/node-v18.20.8.tar.gz  # Replace with the 'dest' directory from your unarchive task
-#        state: absent
-##        recurse: yes
-
     - name: Remove files and directories from previous tar extraction
+      file:
+        path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
+        state: absent
+#        recurse: yes
+
+    - name: create dir
       file:
         path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
         state: directory
@@ -37,14 +37,13 @@
 
     - name: Download node.js packages
       ansible.builtin.get_url:
-#        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
-        url: https://nodejs.org/dist/v18.20.8/node-v18.20.8.tar.gz
+        url: http://nodejs.org/dist/v0.10.30/node-v0.10.30-linux-x64.tar.gz
         dest: /home/centos
       become: true
 
     - name: Extract foo.tgz into /var/lib/foo
       ansible.builtin.unarchive:
-        src: /home/centos/node-v18.20.8.tar.gz
+        src: /home/centos/node-v0.10.30-linux-x64.tar.gz
         dest: /usr/local/node
         remote_src: yes
         extra_opts: --strip-components=1
