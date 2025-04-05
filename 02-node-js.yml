@@ -2,20 +2,20 @@
 - name: Node.js
   hosts: app2
 #  hosts: app1
-  become: true
+  become_user: centos
 
   tasks:
     - name: update all installed packages
       yum:
         update_only: true
         update_cache: true
-#      become: true
+      become: true
 
     - name: Download node.js packages
       ansible.builtin.get_url:
         url: https://rpm.nodesource.com/setup_10.x
         dest: /home/centos
-#      become: true
+      become: true
 
     - name: Comment out mirrorlist lines in CentOS-Base.repo
       ansible.builtin.lineinfile:
@@ -24,7 +24,7 @@
         state: absent
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
-#      become: true
+      become: true
 
 #    - name: install node.js
 #      yum:
