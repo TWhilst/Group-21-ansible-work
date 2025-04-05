@@ -2,26 +2,31 @@
 - name: Node.js
   hosts: app2
 #  hosts: app1
-  become: true
+  become_user: centos
 
   tasks:
     - name: update all installed packages
       yum:
         update_only: true
         update_cache: true
+      become: true
 
     - name: Download node.js packages
       ansible.builtin.get_url:
         url: https://rpm.nodesource.com/setup_23.x
+        dest: /home/centos
+      become: true
 
     - name: install node.js
       yum:
         name: nodejs
         state: present
+      become: true
 
     - name: install npm
       yum:
         name: npm
         state: present
+      become: true
 
 
