@@ -3,6 +3,17 @@
   hosts: app2
 #  hosts: app1
   become: true
+  vars:
+    vault_url_prefix: "http://vault.centos.org"
+    repositories:
+      - name: base
+        path: os
+      - name: updates
+        path: updates
+      - name: extras
+        path: extras
+      - name: centosplus
+        path: centosplus
 
   tasks:
     - name: update all installed packages
@@ -26,12 +37,12 @@
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
 
-    - name: Uncomment baseurl lines in CentOS-Base.repo
+    - name: Set baseurl for each repository to CentOS Vault
       ansible.builtin.lineinfile:
         path: /etc/yum.repos.d/CentOS-Base.repo
-        regexp: '^#baseurl='
-        state: present
-        line: 'baseurl='
+        regexp: '^#?baseurl=http://mirror.centos.org/centos/$releasever/{{ item.path }}/$basearch/'
+        line: 'baseurl={{ vault_url_prefix}}/centos/$releasever/{{ item.path }}/$basearch/'
+      loop: "{{ repositories }}"
 
 #    - name: install node.js
 #      yum:
