@@ -43,7 +43,7 @@
     - name: Extract foo.tgz into /var/lib/foo
       ansible.builtin.unarchive:
         src: /home/centos/node-v18.20.8-linux-x64.tar.xz
-        dest: /usr/local/node
+        dest: /usr/local/
         remote_src: yes
         extra_opts: --strip-components=1
 
