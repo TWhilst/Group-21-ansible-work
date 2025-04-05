@@ -1,0 +1,38 @@
+---
+- name: uninstall previous nodejs version
+  hosts: app2
+  become: true
+
+  tasks:
+    - name: Remove existing Node.js installation in /usr/local (if any)
+      file:
+        path: /usr/local/bin/node
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove existing npm in /usr/local (if any)
+      file:
+        path: /usr/local/bin/npm
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove common Node.js include directory (if any)
+      file:
+        path: /usr/local/include/node
+        state: absent
+        recurse: yes
+      ignore_errors: yes
+
+    - name: Remove common Node.js lib directory (if any)
+      file:
+        path: /usr/local/lib/node_modules
+        state: absent
+        recurse: yes
+      ignore_errors: yes
+
+    - name: Extract Node.js tar.gz into /usr/local
+      ansible.builtin.unarchive:
+        src: /home/centos/node-v18.20.8.tar.gz
+        dest: /usr/local
+        remote_src: yes
+        extra_opts: --strip-components=1
