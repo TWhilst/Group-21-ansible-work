@@ -64,14 +64,14 @@
         remote_src: yes
 #        extra_opts: --strip-components=1
 
-    - name: Echo NVM_DIR to .bashrc
-      shell: echo "export NVM_DIR=\'\'" >> /home/centos/.bashrc
-
-    - name: Echo NVM_DIR to .bashrc
-      shell: echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/centos/.bashrc
-
-    - name: Echo NVM_DIR to .bashrc
-      shell: echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/centos/.bashrc
+#    - name: Echo NVM_DIR to .bashrc
+#      shell: echo "export NVM_DIR=\'\'" >> /home/centos/.bashrc
+#
+#    - name: Echo NVM_DIR to .bashrc
+#      shell: echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/centos/.bashrc
+#
+#    - name: Echo NVM_DIR to .bashrc
+#      shell: echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/centos/.bashrc
 
     - name: Source .bashrc for the current task
       shell: source /home/centos/.bashrc
