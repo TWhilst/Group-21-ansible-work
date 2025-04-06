@@ -53,7 +53,7 @@
 
     - name: Download node.js packages
       ansible.builtin.get_url:
-        url: wget -nv https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
+        url: https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
         dest: /home/centos
       become: true
 
