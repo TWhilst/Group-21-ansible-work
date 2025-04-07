@@ -1,14 +1,70 @@
 ---
+- name: deploy node.js
+  hosts: app2
+  become: true
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+  vars:
+    - npm_url: http://34.203.223.180:8081/nexus/content/repositories/nodejs-app/devops-api/
+
+  tasks:
+    - name: install pm
+      npm:
+        global: true
+        name: pm
+      become: true
+
+    - name: create a dir
+      file:
+        path: /home/centos/node
+        state: directory
+
+    - name: Install Express using npm
+      command: >
+        npm install express -registry http://34.236.147.140:8081/nexus/content/repositories/nodejs-app/
+      args:
+        chdir: /home/centos/node
+#
+#    - name: Execute pm2 start command
+#      command: pm2 start
+#      args:
+#        chdir: /home/centos/
+#      register: command_output
+#
+##    - name: Install dependencies
+##      command: npm install
+##      args:
+##        chdir: /path/to/app
+#
+#    - name: Restart application (using pm2)
+#      command: pm2 restart 0
+#      args:
+#        chdir: /home/centos
+
+#    - name: Configure reverse proxy (Nginx example)
+#      template:
+#        src: nginx_config.j2
+#        dest: /etc/nginx/sites-available/app.conf
+#      notify:
+#        - Restart Nginx
+#
+#  handlers:
+#    - name: Restart Nginx
+#      service:
+#        name: nginx
+#        state: restarted
+
+---
 - name: Deploy Node.js Application
   hosts: app1
   become: true
 
   vars:
     app_package: "{{ app_package }}"
-#    deploy_path: "{{ deploy_path }}"
-#    node_version: "{{ node_version }}"
+    #    deploy_path: "{{ deploy_path }}"
+    #    node_version: "{{ node_version }}"
     seed_database: "{{ seed_database | default('false') }}"
-#    mongodb_service_name: "mongod" # Adjust if your MongoDB service has a different name
+  #    mongodb_service_name: "mongod" # Adjust if your MongoDB service has a different name
 
   tasks:
     - name: Update apt cache (if Debian/Ubuntu)
@@ -38,7 +94,7 @@
       ansible.builtin.copy:
         src: "{{ app_package }}"
         dest: /home/cloud-user/node
-#        remote_src: true
+    #        remote_src: true
 
     - name: Extract application package
       ansible.builtin.unarchive:
@@ -50,13 +106,13 @@
       ansible.builtin.command:
         cmd: npm install
         chdir: /home/cloud-user/node
-#      become_user: "{{ ansible_user }}"
+    #      become_user: "{{ ansible_user }}"
 
     - name: Seed the MongoDB database
       ansible.builtin.command:
         cmd: "node init.js"
         chdir: /home/cloud-user/node
-#      become_user: "{{ ansible_user }}"
+      #      become_user: "{{ ansible_user }}"
       when: seed_database == 'true'
 
     - name: Install pm2 globally
