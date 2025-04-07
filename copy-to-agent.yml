@@ -1,16 +1,13 @@
 ---
 - name: Copy ssh key from master to agent
-  hosts: b1
+  hosts: app2
   become: yes
 
   tasks:
     - name: Copy to ssh pub file
-      ansible.builtin.copy:
-        #content is the text being copied to the file
-        content: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFxQha6bz70F7OgXnuA92pVeGPlJwFKOoeLTIGpVTU2 ubuntu@ip-172-31-29-70'
-        dest: /home/ec2-user/.ssh/id_ed25519.pub
-        # follow if yes simply empties the file
-        follow: yes
+      file:
+        path: /home/centos/done
+        state: directory
 
 
 ...
