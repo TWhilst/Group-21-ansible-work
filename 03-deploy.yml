@@ -21,7 +21,7 @@
 
     - name: Install Express using npm
       command: >
-        npm install express -registry http://34.203.223.180:8081/nexus/content/repositories/nodejs-app/
+        npm install express -registry http://34.236.147.140:8081/nexus/content/repositories/nodejs-app/
       args:
         chdir: /home/centos/node
 #

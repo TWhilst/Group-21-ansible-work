@@ -23,7 +23,7 @@
         line: '#mirrorlist='
         insertbefore: '^#baseurl='
 
-#   Still working on it
+#   Still working on it video
     - name: Set baseurl for each repository to CentOS Vault
       ansible.builtin.lineinfile:
         path: /etc/yum.repos.d/CentOS-Base.repo
