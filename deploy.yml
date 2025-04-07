@@ -17,16 +17,16 @@
         update_only: yes
 
     - name: Ensure necessary packages are installed (Node.js, npm, MongoDB)
-      package:
+      yum:
         name:
           - nodejs
           - npm
-          - mongod # Or mongodb for older versions
+          - mongodb-org # Or mongodb for older versions
         state: present
 
     - name: Ensure MongoDB service is started and enabled
       service:
-        name: mongod
+        name: mongodb-org
         state: started
         enabled: yes
 
