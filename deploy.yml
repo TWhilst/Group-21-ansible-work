@@ -38,7 +38,7 @@
       ansible.builtin.copy:
         src: "{{ app_package }}"
         dest: /home/cloud-user/node
-        remote_src: true
+#        remote_src: true
 
     - name: Extract application package
       ansible.builtin.unarchive:
