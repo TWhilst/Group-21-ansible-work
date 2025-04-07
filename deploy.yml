@@ -7,7 +7,7 @@
     app_package: "{{ app_package }}"
 #    deploy_path: "{{ deploy_path }}"
 #    node_version: "{{ node_version }}"
-#    seed_database: "{{ seed_database | default('false') }}"
+    seed_database: "{{ seed_database | default('false') }}"
 #    mongodb_service_name: "mongod" # Adjust if your MongoDB service has a different name
 
   tasks:
@@ -57,7 +57,7 @@
         cmd: "node init.js"
         chdir: /home/cloud-user/node
 #      become_user: "{{ ansible_user }}"
-#      when: seed_database == 'true'
+      when: seed_database == 'true'
 
     - name: Install pm2 globally
       npm:

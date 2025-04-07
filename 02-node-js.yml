@@ -1,7 +1,6 @@
 ---
 - name: Node.js
-  hosts: app2
-#  hosts: app1
+  hosts: app3
   become: true
 
   tasks:
@@ -9,73 +8,15 @@
       yum:
         update_only: true
         update_cache: true
-      become: true
+#      become: true
 
-#    - name: Download and execute nvm installation script
-#      shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash"
-#
-#    - name: Execute nvm setup commands
-#      shell: |
-#        export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-#        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-#
-#    - name: Install the latest Node.js version with nvm
-#      shell: ". ~/.nvm/nvm.sh && nvm install node"
-#      register: nvm_install_output
-#      changed_when: "'Now using node' not in nvm_install_output.stdout"
-#    - debug:
-#        var: nvm_install_output.stdout
+    - name: Download and execute Node.js setup script
+      ansible.builtin.shell: |
+        curl -sL https://rpm.nodesource.com/setup_20.x | bash -
+      args:
+        executable: /bin/bash
 
-
-
-    - name: Check if /usr/local/bin/node exists
-      stat:
-        path: /usr/local/bin/node
-      register: node_bin
-
-    - name: Remove existing Node.js installation in /usr/local if found
-      file:
-        path: /usr/local
-        state: absent
-        recurse: yes
-      when: node_bin.stat.exists
-
-    - name: Remove files and directories from previous tar extraction
-      file:
-        path: /usr/local/node  # Replace with the 'dest' directory from your unarchive task
-        state: absent
-
-    - name: create dir
-      file:
-        path: /usr/local/lib/node/nodejs  # Replace with the 'dest' directory from your unarchive task
-        state: directory
-#        recurse: yes
-
-    - name: Download node.js packages
-      ansible.builtin.get_url:
-        url: https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
-        dest: /home/centos
-      become: true
-
-    - name: Extract foo.tgz into /var/lib/foo
-      ansible.builtin.unarchive:
-        src: /home/centos/node-v18.17.1.tar.gz
-        dest: /usr/local/lib/node/nodejs
-        remote_src: yes
-#        extra_opts: --strip-components=1
-
-#    - name: Echo NVM_DIR to .bashrc
-#      shell: echo "export NVM_DIR=\'\'" >> /home/centos/.bashrc
-#
-#    - name: Echo NVM_DIR to .bashrc
-#      shell: echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/centos/.bashrc
-#
-#    - name: Echo NVM_DIR to .bashrc
-#      shell: echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/centos/.bashrc
-
-    - name: Source .bashrc for the current task
-      shell: source /home/centos/.bashrc
-
-
-#
-#
+    - name: Install Nodejs
+      yum:
+        name: nodejs
+        state: present
