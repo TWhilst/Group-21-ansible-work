@@ -1,12 +1,12 @@
 ---
 - name: Copy ssh key from master to agent
   hosts: app2
-  become: yes
+  become: true
 
   tasks:
     - name: Copy to ssh pub file
       file:
-        path: /home/centos/done
+        path: /hom/centos/done
         state: directory
 
 
