@@ -20,7 +20,6 @@
       yum:
         name:
           - nodejs
-          - npm
           - mongodb-org # Or mongodb for older versions
         state: present
 
