@@ -66,6 +66,6 @@
 
     - name: Start/Restart application with pm2
       ansible.builtin.command:
-        cmd: "pm2 start 0"
+        cmd: "pm2 start"
         chdir: /home/cloud-user/node
 #      become_user: "{{ ansible_user }}"
