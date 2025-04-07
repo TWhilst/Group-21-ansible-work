@@ -1,6 +1,6 @@
 ---
 - name: Deploy Node.js Application
-  hosts: app1
+  hosts: app3
   become: true
 
   vars:
