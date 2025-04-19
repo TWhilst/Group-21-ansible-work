@@ -1,0 +1,9 @@
+---
+- name: Show group members name dynamically
+  hosts: app3
+  become: true
+
+  tasks:
+    - name: Add dynamically
+      template:
+        src: dynamic.j2

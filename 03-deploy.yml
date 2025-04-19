@@ -1,11 +1,7 @@
 ---
 - name: Deploy Node.js Application
-  hosts: app3
+  hosts: app303-deploy.yml
   become: true
-
-  vars:
-    app_package: "{{ app_package }}"
-    seed_database: "{{ seed_database | default('false') }}"
 
   tasks:
     - name: Update apt cache (if Debian/Ubuntu)
